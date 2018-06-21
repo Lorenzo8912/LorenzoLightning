@@ -1,0 +1,19 @@
+<aura:component controller="TopFactorController" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="showTheRecord" type="Contact[]"/>
+        <lightning:card title="Provo i fattori">
+            <p class="slds-p-horizontal_small">
+            <lightning:button onclick="{!c.handleShowRecord}" label="Fammi vedere"/>
+                <div class="listaFattori">
+                <ul class="slds-list_horizontal slds-has-dividers_right">
+                      <li class="slds-item">Factor 1</li>
+                      <li class="slds-item">Factor 2</li>
+                      <li class="slds-item">Factor 3</li>
+                </ul>
+                 </div>
+                <aura:iteration var="contact" items="{!v.showTheRecord}">
+             
+                    
+                </aura:iteration>
+            </p>
+        </lightning:card>
+</aura:component>

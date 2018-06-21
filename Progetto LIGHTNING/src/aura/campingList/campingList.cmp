@@ -1,0 +1,77 @@
+<aura:component >
+    
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <aura:attribute name="newItem" type="Camping_Item__c"
+                    default="{'sobjectType' : 'Camping_Item__c',
+                               'Quantity__c' : 0,
+                               'Price__c' : 0}"/>
+  <!-- BOXED AREA -->
+  <lightning:layout class="slds-page-header slds-page-header_object-home"/>
+    <h3 class="slds-text-heading_label">Camping Item</h3>
+  <fieldset class="slds-box slds-theme--default slds-container--small">
+      
+      <lightning:layoutItem padding="horizontal-small">
+        
+            <lightning:layoutItem>
+            <lightning:icon iconName="action:goal" alternativeText="Camping Item" />
+          </lightning:layoutItem>
+            <div class="page-section page-header">
+                
+                <h2 class="slds-text-heading_medium">Add Camping Item</h2>
+            </div>
+      </lightning:layoutItem>
+
+
+    <!-- CREATE NEW CAMPING ITEM FORM -->
+    <form class="slds-form--stacked">
+        <lightning:input 
+                         name="campItemName"
+                         label="Camping Item Name"
+                         value="{!v.newItem.Name}"
+                         required="true"/>
+        <lightning:input 
+                         name="quantity"
+                         label="Quantity"
+                         type="number"
+                         min="1"
+                         value="{!v.newItem.Quantity__c}"/>
+        <lightning:input 
+                         name="price"
+                         label="Price"
+                         type="number"
+                         formatter="currency"
+                         value="{!v.newItem.Price__c}"/>
+        <lightning:input 
+                         name="packed"
+                         label="Packed"
+                         type="checkbox"
+                         checked="{!v.newItem.Packed__c}"/>
+        <lightning:button label= "Create Item"
+                          class="slds-m-top_medium" 
+                          onclick="{!c.clickCreateItem}"/> <!-- il class questo crea lo spazio-->
+
+    </form>
+    <!-- / CREATE NEW CAMPING ITEM FORM -->
+
+  </fieldset>
+        <div class ="slds-card slds-p-top--meduim">
+        <header class ="slds-card__header">
+            <h3 class = "slds-text-heading--small">Items</h3>
+        </header>
+
+        <section class ="slds-card__body">
+            <div id="list" class = "row">
+                <aura:iteration items="{!v.items}" var="item">
+                    <c:campingListItem item="{!item}"/>
+                </aura:iteration>
+            </div>
+        </section>
+
+    </div>
+    <!-- i do not think this html is needed any longer
+    <ol>  
+        <li>Bug Spray</li>
+        <li>Bear Repellant</li>
+        <li>Goat Food</li>
+    </ol>-->
+</aura:component>

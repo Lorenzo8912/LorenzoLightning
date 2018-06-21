@@ -1,0 +1,17 @@
+<aura:component controller="accWithContController">
+   <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+   <aura:attribute name="ListOfAccount" type="Account[]"/>
+   <ul class="slds-list_horizontal slds-has-dividers_right">
+       
+      <aura:iteration items="{!v.ListOfAccount}" var="acc">
+         <li type="dice">{!acc.Name}</li>
+         <ul>
+            <aura:iteration items="{!acc.Contacts}" var="con" indexVar="index">
+               <!--<li>contact {!index + 1} Name : {!con.LastName}</li>-->
+            </aura:iteration>
+         </ul>
+         <hr/>
+      </aura:iteration>
+   </ul>
+</aura:component>
